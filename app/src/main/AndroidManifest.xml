@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".historial"></activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@anim/down_from_top" />
+
+        <activity android:name=".historial" />
         <activity android:name=".inicio" />
         <activity android:name=".buscar" />
         <activity android:name=".MainActivity">
