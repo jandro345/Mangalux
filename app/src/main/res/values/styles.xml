@@ -20,4 +20,5 @@
         <item name="android:layout_width">30dp</item> <!--Le pongo una anchura al estilo que estoy creando -->
         <item name="android:layout_height">1dp</item> <!--Le pongo una altura al estilo que estoy creando -->
     </style>
+
 </resources>

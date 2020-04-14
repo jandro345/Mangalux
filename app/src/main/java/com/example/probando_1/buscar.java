@@ -42,6 +42,8 @@ public class buscar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar);
+
+
         MangaModels=EdenLista();
         this.buscar=findViewById(R.id.Buscador);
         buscar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
