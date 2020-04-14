@@ -4,12 +4,15 @@ import android.media.Image;
 import android.widget.ImageView;
 
 public class MangaList {
+    //Hay mas parametros obtenidos por la API,pero a este nivel no son utiles
     String nombre;
     String autor;
     ImageView cover;
     String id;
     String fuente;
 
+    //Constructor principal,seria recomendable crear uno momentaneamente pero sin el cover,asi cuando la persona haya dejado
+    //de escribir,asignamos con el setter y evitamos hacer tantas peticiones al servidor. La idea esta debe implementarse en el buscar.java
     public MangaList(String nombre, String autor, ImageView cover,String id,String fuente) {
         this.nombre = nombre;
         this.autor = autor;

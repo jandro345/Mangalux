@@ -84,7 +84,7 @@ public class CustomAdapter extends ArrayAdapter<MangaList> implements View.OnCli
         viewHolder.txtNombre.setText(dataModel.getNombre());
         viewHolder.txtAutor.setText(dataModel.getAutor());
         viewHolder.cover.setOnClickListener(this);
-        viewHolder.cover.setImageAlpha(dataModel.getCover().getImageAlpha());
+        viewHolder.cover.setImageResource(R.drawable.linterna);
         viewHolder.cover.setTag(position);
         // Return the completed view to render on screen
         return convertView;
