@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".Menu"
     android:layout_gravity="center_horizontal"
+    android:background="#42A5F5"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +46,8 @@
             style="@style/botones"
             android:layout_width="140dp"
             android:layout_height="78dp"
-            android:src="@drawable/linterna"
+            android:background="@android:color/transparent"
+            android:src="@drawable/search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +56,8 @@
             style="@style/botones"
             android:layout_width="140dp"
             android:layout_height="78dp"
-            android:src="@drawable/linterna"
+            android:background="@android:color/transparent"
+            android:src="@drawable/inicio"
             app:layout_constraintEnd_toStartOf="@+id/historial"
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toEndOf="@+id/busqueda"
@@ -65,7 +68,8 @@
             style="@style/botones"
             android:layout_width="140dp"
             android:layout_height="78dp"
-            android:src="@drawable/linterna"
+            android:src="@drawable/historial"
+            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

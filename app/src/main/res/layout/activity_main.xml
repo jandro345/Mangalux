@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#90CAF9"
+    >
 
 
     <fragment
@@ -16,6 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout="@layout/fragment_menu"
         tools:layout_editor_absoluteX="198dp">
+        android:background="#42A5F5"
         >
     </fragment>
 

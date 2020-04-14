@@ -1,9 +1,8 @@
 package com.example.probando_1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -26,14 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class buscar extends AppCompatActivity {
     ArrayList<MangaList> dataModels;
@@ -72,6 +64,22 @@ public class buscar extends AppCompatActivity {
                     actualizar();
                 }
                 return false;
+            }
+        });
+        //Botón de Inicio
+        ImageButton inicio=findViewById(R.id.inicio);
+        inicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                entrada3(v);
+            }
+        });
+        //Botón de Historial
+        ImageButton historial=findViewById(R.id.historial);
+        historial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                entrada2(v);
             }
         });
 
@@ -135,7 +143,7 @@ public class buscar extends AppCompatActivity {
                    // ImageView cov=getCoverEden(MangaModels.get(i).get("im").toString()); //cov: cover
                     String id=MangaModels.get(i).get("i").toString().toLowerCase(); //id:id del manga
                     ImageView cov=new ImageView(this); //Bugea por ahora,he puesto una de prueba mientras se arregla
-                    cov.setImageResource(R.drawable.linterna);
+                    cov.setImageResource(R.drawable.inicio);
                     Models.add(new MangaList(tit,cat,cov,id,"Eden")); //Añadimos el manga con su constructor
                 }
             } catch (JSONException e) {
@@ -199,5 +207,17 @@ public class buscar extends AppCompatActivity {
 
 
         return cover;
+    }
+    //Función que salta a la actividad de búsqueda
+    void entrada2(View view){
+        Intent Random;
+        Random= new Intent(this,buscar.class);
+        startActivity(Random);
+    }
+    void entrada3(View view){
+        Intent Random;
+        Random= new Intent(this,MainActivity.class);
+        startActivity(Random);
+
     }
 }

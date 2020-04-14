@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     //Función que salta a la actividad de inicio
     void entrada3(View view){
         Intent Random;
-        Random= new Intent(this,inicio.class);
+        Random= new Intent(this,MainActivity.class);
         startActivity(Random);
     }
 

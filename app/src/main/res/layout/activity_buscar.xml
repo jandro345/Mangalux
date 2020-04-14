@@ -5,7 +5,8 @@
     android:id="@+id/busqueda"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".buscar">
+    tools:context=".buscar"
+    android:background="#90CAF9">
 
     <SearchView
         android:id="@+id/Buscador"
