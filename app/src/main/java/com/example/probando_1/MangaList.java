@@ -7,14 +7,14 @@ public class MangaList {
     String nombre;
     String autor;
     ImageView cover;
-    String url;
+    String id;
     String fuente;
 
-    public MangaList(String nombre, String autor, ImageView cover,String url,String fuente) {
+    public MangaList(String nombre, String autor, ImageView cover,String id,String fuente) {
         this.nombre = nombre;
         this.autor = autor;
         this.cover = cover;
-        this.url=url;
+        this.id=id;
         this.fuente=fuente;
     }
 
@@ -40,5 +40,21 @@ public class MangaList {
 
     public void setCover(ImageView cover) {
         this.cover = cover;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getFuente() {
+        return fuente;
+    }
+
+    public void setFuente(String fuente) {
+        this.fuente = fuente;
     }
 }

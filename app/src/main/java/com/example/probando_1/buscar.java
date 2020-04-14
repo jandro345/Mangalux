@@ -1,10 +1,13 @@
 package com.example.probando_1;
 
+import android.graphics.Bitmap;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 
@@ -14,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
@@ -110,7 +114,13 @@ public class buscar extends AppCompatActivity {
             try {
                 //Se busca el manga por el titulo y se comprueban las coincidencias
                 if(MangaModels.get(i).get("t").toString().toLowerCase().contains(titulo.toLowerCase())){
-                    Models.add(new MangaList(MangaModels.get(i).get("t").toString().toLowerCase(),MangaModels.get(i).get("c").toString().toLowerCase(),R.drawable.linterna));
+                    String tit=MangaModels.get(i).get("t").toString().toLowerCase();
+                    String cat=MangaModels.get(i).get("c").toString().toLowerCase();
+                   // ImageView cov=getCoverEden(MangaModels.get(i).get("im").toString());
+                    String id=MangaModels.get(i).get("i").toString().toLowerCase();
+                    ImageView cov=new ImageView(this);
+                    cov.setImageResource(R.drawable.linterna);
+                    Models.add(new MangaList(tit,cat,cov,id,"Eden"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -139,5 +149,30 @@ public class buscar extends AppCompatActivity {
 
             }
         });
+    }
+    protected ImageView getCoverEden(String img){
+       final ImageView cover=new ImageView(this);
+       String url="https://cdn.mangaeden.com/mangasimg/"+img;
+
+
+        ImageRequest request = new ImageRequest(url,
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap bitmap) {
+                        cover.setImageBitmap(bitmap);
+                    }
+                }, 0, 0, null,
+                new Response.ErrorListener() {
+                    public void onErrorResponse(VolleyError error) {
+                        cover.setImageResource(R.drawable.inicio);
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()) ;
+        queue.add(request) ;
+
+
+        return cover;
     }
 }
