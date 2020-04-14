@@ -1,21 +1,21 @@
 package com.example.probando_1;
 
 import android.media.Image;
+import android.widget.ImageView;
 
 public class MangaList {
     String nombre;
     String autor;
-    int cover;
+    ImageView cover;
     String url;
     String fuente;
-    boolean favorito;
 
-    public MangaList(String nombre, String autor, int cover) {
+    public MangaList(String nombre, String autor, ImageView cover,String url,String fuente) {
         this.nombre = nombre;
         this.autor = autor;
         this.cover = cover;
-        this.url="N";
-        this.favorito=true;
+        this.url=url;
+        this.fuente=fuente;
     }
 
     public String getNombre() {
@@ -34,11 +34,11 @@ public class MangaList {
         this.autor = autor;
     }
 
-    public int getCover() {
+    public ImageView getCover() {
         return cover;
     }
 
-    public void setCover(int cover) {
+    public void setCover(ImageView cover) {
         this.cover = cover;
     }
 }
