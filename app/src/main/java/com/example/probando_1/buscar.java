@@ -1,12 +1,11 @@
 package com.example.probando_1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -46,8 +45,6 @@ public class buscar extends AppCompatActivity {
         dataModels.add(new MangaList("Berserk", "Kentaro Miura", R.drawable.linterna));
 
 
-
-
         adapter = new CustomAdapter(dataModels, getApplicationContext());
 
         listView.setAdapter(adapter);
@@ -64,4 +61,5 @@ public class buscar extends AppCompatActivity {
             }
         });
     }
+
 }

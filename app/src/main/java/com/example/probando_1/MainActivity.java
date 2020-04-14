@@ -1,13 +1,11 @@
 package com.example.probando_1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import java.util.Random;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         busqueda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                entrada1(v);
+                entrada2(v);
             }
         });
 
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         historial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                entrada2(v);
+                entrada1(v);
             }
         });
 
