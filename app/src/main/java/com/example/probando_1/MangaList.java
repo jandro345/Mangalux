@@ -10,15 +10,17 @@ public class MangaList {
     ImageView cover;
     String id;
     String fuente;
+    String im;
 
     //Constructor principal,seria recomendable crear uno momentaneamente pero sin el cover,asi cuando la persona haya dejado
     //de escribir,asignamos con el setter y evitamos hacer tantas peticiones al servidor. La idea esta debe implementarse en el buscar.java
-    public MangaList(String nombre, String autor, ImageView cover,String id,String fuente) {
+    public MangaList(String nombre, String autor, ImageView cover,String id,String fuente,String im) {
         this.nombre = nombre;
         this.autor = autor;
         this.cover = cover;
         this.id=id;
         this.fuente=fuente;
+        this.im=im;
     }
 
     public String getNombre() {
@@ -51,6 +53,14 @@ public class MangaList {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIm() {
+        return im;
+    }
+
+    public void setIm(String im) {
+        this.im = im;
     }
 
     public String getFuente() {

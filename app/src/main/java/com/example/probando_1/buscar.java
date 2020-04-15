@@ -100,6 +100,7 @@ public class buscar extends AppCompatActivity {
                     //Convertir JSON gigante en unos mas faciles de controlar
                         try {
                             //Evento de respuesta
+                           
                            JSONArray ind= (JSONArray) response.get("manga");
                            for(int j=1;j<ind.length();j++){
                               JSONObject add=ind.getJSONObject(j);
@@ -140,11 +141,11 @@ public class buscar extends AppCompatActivity {
                     //Sacamos el valor que corresponde a la variable correspondiente del JSON
                     String tit=MangaModels.get(i).get("t").toString().toLowerCase(); //t:titulo
                     String cat=MangaModels.get(i).get("c").toString().toLowerCase();//c:categoria
-                   // ImageView cov=getCoverEden(MangaModels.get(i).get("im").toString()); //cov: cover
+                    String im=MangaModels.get(i).get("im").toString();
                     String id=MangaModels.get(i).get("i").toString().toLowerCase(); //id:id del manga
                     ImageView cov=new ImageView(this); //Bugea por ahora,he puesto una de prueba mientras se arregla
                     cov.setImageResource(R.drawable.inicio);
-                    Models.add(new MangaList(tit,cat,cov,id,"Eden")); //Añadimos el manga con su constructor
+                    Models.add(new MangaList(tit,cat,cov,id,"Eden",im)); //Añadimos el manga con su constructor
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

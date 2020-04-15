@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -84,7 +85,10 @@ public class CustomAdapter extends ArrayAdapter<MangaList> implements View.OnCli
         viewHolder.txtNombre.setText(dataModel.getNombre());
         viewHolder.txtAutor.setText(dataModel.getAutor());
         viewHolder.cover.setOnClickListener(this);
-        viewHolder.cover.setImageResource(R.drawable.inicio);
+        if(dataModel.getIm()!="null")
+        Picasso.get().load("https://cdn.mangaeden.com/mangasimg/"+dataModel.getIm()).into(viewHolder.cover);
+        else
+            viewHolder.cover.setImageResource(R.drawable.inicio);
         viewHolder.cover.setTag(position);
         // Return the completed view to render on screen
         return convertView;
