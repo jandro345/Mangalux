@@ -11,24 +11,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends ArrayAdapter<MangaList> implements View.OnClickListener{
+public class ChapterAdapter extends ArrayAdapter<ChapterList> implements View.OnClickListener{
 
-    private ArrayList<MangaList> dataSet;
+
+    private ArrayList<ChapterList> dataSet;
     Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
-        TextView txtNombre;
-        TextView txtAutor;
-        ImageView cover;
+        TextView txtChapter;
+        ImageView logo;
     }
 
-    public CustomAdapter(ArrayList<MangaList> data, Context context) {
-        super(context, R.layout.lista_item, data);
+    public ChapterAdapter(ArrayList<ChapterList> data, Context context) {
+        super(context, R.layout.lista_manga, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -55,26 +54,25 @@ public class CustomAdapter extends ArrayAdapter<MangaList> implements View.OnCli
 
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        MangaList dataModel = getItem(position);
+        ChapterList dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
-        ViewHolder viewHolder; // view lookup cache stored in tag
+        ChapterAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
 
         final View result;
 
         if (convertView == null) {
 
-            viewHolder = new ViewHolder();
+            viewHolder = new ChapterAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lista_item, parent, false);
-            viewHolder.txtNombre = (TextView) convertView.findViewById(R.id.Nombre);
-            viewHolder.txtAutor = (TextView) convertView.findViewById(R.id.txtChapter);
-            viewHolder.cover = (ImageView) convertView.findViewById(R.id.logo);
+            convertView = inflater.inflate(R.layout.lista_manga, parent, false);
+            viewHolder.txtChapter = (TextView) convertView.findViewById(R.id.txtChapter);
+            viewHolder.logo = (ImageView) convertView.findViewById(R.id.logo);
 
             result=convertView;
 
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ChapterAdapter.ViewHolder) convertView.getTag();
             result=convertView;
         }
 
@@ -82,15 +80,12 @@ public class CustomAdapter extends ArrayAdapter<MangaList> implements View.OnCli
         result.startAnimation(animation);
         lastPosition = position;
 
-        viewHolder.txtNombre.setText(dataModel.getNombre());
-        viewHolder.txtAutor.setText(dataModel.getAutor());
-        viewHolder.cover.setOnClickListener(this);
-        if(dataModel.getIm()!="null")
-        Picasso.get().load("https://cdn.mangaeden.com/mangasimg/"+dataModel.getIm()).into(viewHolder.cover);
-        else
-            viewHolder.cover.setImageResource(R.drawable.inicio);
-        viewHolder.cover.setTag(position);
+        viewHolder.txtChapter.setText(dataModel.getNumero());
+        viewHolder.logo.setOnClickListener(this);
+        viewHolder.logo.setImageResource(R.drawable.inicio);
+        viewHolder.logo.setTag(position);
         // Return the completed view to render on screen
         return convertView;
     }
 }
+

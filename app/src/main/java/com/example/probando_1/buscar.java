@@ -102,7 +102,7 @@ public class buscar extends AppCompatActivity {
                             //Evento de respuesta
                            
                            JSONArray ind= (JSONArray) response.get("manga");
-                           for(int j=1;j<ind.length();j++){
+                           for(int j=0;j<ind.length();j++){
                               JSONObject add=ind.getJSONObject(j);
                                Models.add(add);
                            }
@@ -169,46 +169,15 @@ public class buscar extends AppCompatActivity {
 
                 MangaList dataModel = dataModels.get(position);
 //Aquí deberiamos crear la nueva activity pasandole la URL del MangaList,se hace con bundle
+                GoToChapter(view,dataModel.getId());
 
-
-                //Pequeña barra para comprobar que los datos estan bien sacados
-                Snackbar.make(view, dataModel.getNombre() + "\n" + dataModel.getAutor(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
 
 
             }
         });
     }
 
-    //Conectamos con la pagina y sacamos la imagen,peta y el servidor no nos deja entrar,supongo que por la cantidad de peticiones
-    //Tambien puede ser porque imageRequest esta decrypted(en desuso) y por eso peta
-    protected ImageView getCoverEden(String img){
 
-        //Mismo proceso pero con una imagen
-       final ImageView cover=new ImageView(this);
-       String url="https://cdn.mangaeden.com/mangasimg/"+img;
-
-
-        ImageRequest request = new ImageRequest(url,
-                new Response.Listener<Bitmap>() {
-                    @Override
-                    public void onResponse(Bitmap bitmap) {
-                        cover.setImageBitmap(bitmap);
-                    }
-                }, 0, 0, null,
-                new Response.ErrorListener() {
-                    public void onErrorResponse(VolleyError error) {
-                        cover.setImageResource(R.drawable.inicio);
-                    }
-                });
-
-        //Ponemos nuestra peticion en la cola para que se ejecute
-        RequestQueue queue = Volley.newRequestQueue(getApplicationContext()) ;
-        queue.add(request) ;
-
-
-        return cover;
-    }
     //Función que salta a la actividad de búsqueda
     void entrada2(View view){
         Intent Random;
@@ -218,6 +187,13 @@ public class buscar extends AppCompatActivity {
     void entrada3(View view){
         Intent Random;
         Random= new Intent(this,MainActivity.class);
+        startActivity(Random);
+
+    }
+    void GoToChapter(View view,String id){
+        Intent Random;
+        Random= new Intent(this,ChapterListActivity.class);
+        Random.putExtra("id",id);
         startActivity(Random);
 
     }
