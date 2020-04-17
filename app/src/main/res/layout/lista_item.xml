@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="125sp"
     android:orientation="vertical"
@@ -8,41 +9,39 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="72dp"
-        android:layout_height="86dp"
+        android:layout_width="72sp"
+        android:layout_height="86sp"
+        android:layout_marginStart="4dp"
         android:contentDescription="Cover"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+        app:layout_constraintVertical_bias="0.41" />
 
     <TextView
         android:id="@+id/Nombre"
-        android:layout_width="249sp"
-        android:layout_height="40sp"
+        android:layout_width="250sp"
+        android:layout_height="24sp"
         android:clickable="true"
-        android:fontFamily="@font/chicle"
+        android:fontFamily="sans-serif"
         android:text="Nombre"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorblack"
         app:layout_constraintBottom_toTopOf="@+id/txtChapter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintVertical_bias="0.769" />
 
     <TextView
         android:id="@+id/txtChapter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="20dp"
         android:text="Autor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.236"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
