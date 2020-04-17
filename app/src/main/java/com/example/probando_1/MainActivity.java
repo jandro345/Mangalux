@@ -13,6 +13,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         //Botón de búsqueda
         ImageButton busqueda=findViewById(R.id.busqueda);
         busqueda.setOnClickListener(new View.OnClickListener() {

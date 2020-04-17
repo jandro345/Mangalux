@@ -1,12 +1,15 @@
 package com.example.probando_1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -14,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.probando_1.utilidades.utilidades;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -110,6 +114,8 @@ public class ChapterListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 ChapterList dataModel = ChapterModels.get(position);
+                registrarManga(getApplicationContext(),"MangaEden","INGLES","123",
+                        "Berserk","1","123","1");
 //Aquí deberiamos crear la nueva activity pasandole la URL de las imagenes se hace con bundle
 
 
@@ -119,4 +125,22 @@ public class ChapterListActivity extends AppCompatActivity {
         });
     }
 
+   public static void registrarManga(Context contexto, String campo_fuente, String campo_idioma, String campo_id, String campo_nombre, String campo_url, String campo_ult_cap,
+                        String campo_cover) {
+
+        ConexionSQLiteHelper conn = new ConexionSQLiteHelper(contexto, "Bdmanga", null, 1);
+        SQLiteDatabase db = conn.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(utilidades.CAMPO_IDIOMA, campo_idioma);
+        values.put(utilidades.CAMPO_FUENTE, campo_fuente);
+        values.put(utilidades.CAMPO_COVER, campo_cover);
+        values.put(utilidades.CAMPO_ID, campo_id);
+        values.put(utilidades.CAMPO_NOMBRE, campo_nombre);
+        values.put(utilidades.CAMPO_URL, campo_url);
+        values.put(utilidades.CAMPO_ULT_CAP, campo_ult_cap);
+
+        Long idResultante = db.insert(utilidades.TABLA_MANGA, utilidades.CAMPO_ID, values);
+        Toast.makeText(contexto,"Id Registro: "+idResultante,Toast.LENGTH_SHORT).show();
+    }
 }

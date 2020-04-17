@@ -1,6 +1,7 @@
 package com.example.probando_1;
 
-import android.text.Html;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ChapterList {
@@ -13,6 +14,7 @@ public class ChapterList {
         this.numero = numero;
         this.url=url;
         this.titulo=titulo;
+
     }
 
     public String getUrl() {
@@ -38,4 +40,6 @@ public class ChapterList {
     public void setLogo(ImageView logo) {
         this.logo = logo;
     }
+
+
 }

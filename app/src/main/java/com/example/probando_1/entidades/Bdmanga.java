@@ -6,14 +6,19 @@ public class Bdmanga {
     private Integer nombre;
     private Integer ult_cap;
     private Integer url;
+    private Integer cover;
+    private Integer fuente;
+    private Integer idioma;
 
-    public Bdmanga(Integer id, Integer nombre, Integer ult_cap, Integer url) {
+    public Bdmanga(Integer id, Integer nombre, Integer ult_cap, Integer url, Integer cover, Integer fuente, Integer idioma) {
         this.id = id;
         this.nombre = nombre;
         this.ult_cap = ult_cap;
         this.url = url;
+        this.cover = cover;
+        this.fuente = fuente;
+        this.idioma = idioma;
     }
-
     public Integer getId() {
         return id;
     }
@@ -44,6 +49,30 @@ public class Bdmanga {
 
     public void setUrl(Integer url) {
         this.url = url;
+    }
+
+    public Integer getCover() {
+        return cover;
+    }
+
+    public void setCover(Integer cover) {
+        this.cover = cover;
+    }
+
+    public Integer getFuente() {
+        return fuente;
+    }
+
+    public void setFuente(Integer fuente) {
+        this.fuente = fuente;
+    }
+
+    public Integer getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Integer idioma) {
+        this.idioma = idioma;
     }
 }
 
