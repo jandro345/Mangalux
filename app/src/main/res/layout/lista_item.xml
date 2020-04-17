@@ -1,15 +1,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="125sp"
     android:orientation="vertical"
     android:padding="10dp">
 
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="63dp"
-        android:layout_height="74dp"
+        android:layout_width="72dp"
+        android:layout_height="86dp"
         android:contentDescription="Cover"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,18 +20,19 @@
 
     <TextView
         android:id="@+id/Nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="249sp"
+        android:layout_height="40sp"
         android:clickable="true"
+        android:fontFamily="@font/chicle"
         android:text="Nombre"
-        android:textColor="@color/colorblack"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorblack"
         app:layout_constraintBottom_toTopOf="@+id/txtChapter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.236"
+        app:layout_constraintHorizontal_bias="0.796"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.294" />
+        app:layout_constraintVertical_bias="0.344" />
 
     <TextView
         android:id="@+id/txtChapter"

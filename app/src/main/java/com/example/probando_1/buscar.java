@@ -40,6 +40,8 @@ public class buscar extends AppCompatActivity {
         MangaModels=EdenLista();
         this.buscar=findViewById(R.id.Buscador);
         buscar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+
             @Override
             //Event listener si se da al enter en la busqueda
             public boolean onQueryTextSubmit(String query) {
@@ -166,7 +168,7 @@ public class buscar extends AppCompatActivity {
 
                 MangaList dataModel = dataModels.get(position);
 //Aquí deberiamos crear la nueva activity pasandole la URL del MangaList,se hace con bundle
-                GoToChapter(view,dataModel.getId());
+                GoToChapter(view,dataModel.getId(),dataModel.getIm());
             }
         });
     }
@@ -184,10 +186,11 @@ public class buscar extends AppCompatActivity {
         startActivity(Random);
 
     }
-    void GoToChapter(View view,String id){
+    void GoToChapter(View view,String id,String cover){
         Intent Random;
         Random= new Intent(this,ChapterListActivity.class);
         Random.putExtra("id",id);
+        Random.putExtra("cover",cover);
         startActivity(Random);
 
     }

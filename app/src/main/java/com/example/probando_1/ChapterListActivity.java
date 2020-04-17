@@ -32,6 +32,8 @@ public class ChapterListActivity extends AppCompatActivity {
     private static ChapterAdapter adapter;
     String Artista;
     String categorias;
+    String id2;
+    String cover;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +41,8 @@ public class ChapterListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chapter_list);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String id = extras.getString("id");
-            ChapterModels=EdenChapterList(id);
+            id2 = extras.getString("id");
+            ChapterModels=EdenChapterList(id2);
             android.os.SystemClock.sleep(100);
             actualizar();
         }else {
@@ -114,8 +116,9 @@ public class ChapterListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 ChapterList dataModel = ChapterModels.get(position);
-                registrarManga(getApplicationContext(),"MangaEden","INGLES","123",
-                        "Berserk","1","123","1");
+
+                registrarManga(getApplicationContext(),"MangaEden","INGLES",id2,
+                        dataModel.getTitulo(),dataModel.getUrl(),dataModel.getNumero(),cover);
 //Aquí deberiamos crear la nueva activity pasandole la URL de las imagenes se hace con bundle
 
 

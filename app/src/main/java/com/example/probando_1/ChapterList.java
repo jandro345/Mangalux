@@ -1,7 +1,5 @@
 package com.example.probando_1;
 
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class ChapterList {
@@ -15,6 +13,14 @@ public class ChapterList {
         this.url=url;
         this.titulo=titulo;
 
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getUrl() {
