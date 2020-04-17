@@ -14,6 +14,8 @@ public class historial extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial);
 
+        ConexionSQLiteHelper conn= new ConexionSQLiteHelper(this,"bd_manga",null,1);
+
         //Botón de Búsqueda
         ImageButton busqueda=findViewById(R.id.busqueda);
         busqueda.setOnClickListener(new View.OnClickListener() {

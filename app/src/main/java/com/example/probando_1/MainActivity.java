@@ -31,22 +31,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Botón de Inicio
-        ImageButton inicio=findViewById(R.id.inicio);
-        inicio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                entrada3(v);
-            }
-        });
     }
 
-    //Función que salta a la actividad de inicio
-    void entrada3(View view){
-        Intent Random;
-        Random= new Intent(this,MainActivity.class);
-        startActivity(Random);
-    }
 
     //Función que salta a la actividad de buscar
     void entrada2(View view){

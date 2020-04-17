@@ -1,7 +1,6 @@
 package com.example.probando_1;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,10 +15,8 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -170,9 +167,6 @@ public class buscar extends AppCompatActivity {
                 MangaList dataModel = dataModels.get(position);
 //Aquí deberiamos crear la nueva activity pasandole la URL del MangaList,se hace con bundle
                 GoToChapter(view,dataModel.getId());
-
-
-
             }
         });
     }
