@@ -1,4 +1,4 @@
-package com.example.probando_1;
+package com.example.probando_1.ListaImagen;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,24 +10,26 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.probando_1.ListaCapitulo.ChapterAdapter;
+import com.example.probando_1.ListaCapitulo.ChapterList;
+import com.example.probando_1.ListaManga.MangaList;
+import com.example.probando_1.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ChapterAdapter extends ArrayAdapter<ChapterList> implements View.OnClickListener{
-
-
-    private ArrayList<ChapterList> dataSet;
+public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnClickListener {
+    private ArrayList<ImageList> dataSet;
     Context mContext;
 
     // View lookup cache
     private static class ViewHolder {
-        TextView txtChapter;
-        ImageView logo;
+        ImageView image_cap;
     }
 
-    public ChapterAdapter(ArrayList<ChapterList> data, Context context) {
-        super(context, R.layout.lista_manga, data);
+    public ImagenAdapter(ArrayList<ImageList> data, Context context) {
+        super(context,R.layout.lista_imagen, data);
         this.dataSet = data;
         this.mContext=context;
 
@@ -38,15 +40,9 @@ public class ChapterAdapter extends ArrayAdapter<ChapterList> implements View.On
 
         int position=(Integer) v.getTag();
         Object object= getItem(position);
-        MangaList dataModel=(MangaList) object;
+        ImageList dataModel=(ImageList) object;
 
-        switch (v.getId())
-        {
-            case R.id.logo:
-                Snackbar.make(v, "Release date " +dataModel.getNombre(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-                break;
-        }
+
     }
 
     private int lastPosition = -1;
@@ -54,38 +50,34 @@ public class ChapterAdapter extends ArrayAdapter<ChapterList> implements View.On
 
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        ChapterList dataModel = getItem(position);
+        ImageList dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
-        ChapterAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
+       ImagenAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
 
         final View result;
 
         if (convertView == null) {
 
-            viewHolder = new ChapterAdapter.ViewHolder();
+            viewHolder = new ImagenAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.lista_manga, parent, false);
-            viewHolder.txtChapter = (TextView) convertView.findViewById(R.id.txtChapter);
-            viewHolder.logo = (ImageView) convertView.findViewById(R.id.logo);
+            convertView = inflater.inflate(R.layout.lista_imagen, parent, false);
+            viewHolder.image_cap = (ImageView) convertView.findViewById(R.id.manga_imagen);
 
             result=convertView;
 
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ChapterAdapter.ViewHolder) convertView.getTag();
+            viewHolder = (ImagenAdapter.ViewHolder) convertView.getTag();
             result=convertView;
         }
 
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
         result.startAnimation(animation);
         lastPosition = position;
-
-        viewHolder.txtChapter.setText(dataModel.getNumero());
-        viewHolder.logo.setOnClickListener(this);
-        viewHolder.logo.setImageResource(R.drawable.inicio);
-        viewHolder.logo.setTag(position);
+        Picasso.get().load("https://cdn.mangaeden.com/mangasimg/"+dataModel.getIm()).into(viewHolder.image_cap);
         // Return the completed view to render on screen
         return convertView;
     }
 }
+
 

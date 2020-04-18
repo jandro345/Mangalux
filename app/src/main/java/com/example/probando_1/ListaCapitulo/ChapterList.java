@@ -1,4 +1,4 @@
-package com.example.probando_1;
+package com.example.probando_1.ListaCapitulo;
 
 import android.widget.ImageView;
 
@@ -7,12 +7,31 @@ public class ChapterList {
     ImageView logo;
     String url;
     String titulo;
+    String artista;
+    String descripcion;
 
-    public ChapterList(String numero,String url,String titulo) {
+    public String getArtista() {
+        return artista;
+    }
+
+    public void setArtista(String artista) {
+        this.artista = artista;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public ChapterList(String numero, String url, String titulo, String artista, String descripcion) {
         this.numero = numero;
-        this.url=url;
-        this.titulo=titulo;
-
+        this.url = url;
+        this.titulo = titulo;
+        this.artista = artista;
+        this.descripcion = descripcion;
     }
 
     public String getTitulo() {

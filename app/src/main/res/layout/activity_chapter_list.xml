@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChapterListActivity">
+    tools:context=".ListaCapitulo.ChapterListActivity">
 
     <ListView
         android:id="@+id/ChapterListView"
@@ -19,4 +19,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.785" />
+
+    <ImageView
+        android:id="@+id/portada"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/inicio"
+        app:layout_constraintBottom_toTopOf="@+id/ChapterListView"
+        app:layout_constraintEnd_toStartOf="@+id/descripcion"
+        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.467" />
+
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_width="402dp"
+        android:layout_height="413dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/ChapterListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/portada"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

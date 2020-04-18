@@ -1,4 +1,4 @@
-package com.example.probando_1;
+package com.example.probando_1.ListaManga;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.probando_1.ListaManga.MangaList;
+import com.example.probando_1.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 

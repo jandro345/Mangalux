@@ -1,4 +1,4 @@
-package com.example.probando_1;
+package com.example.probando_1.ListaManga;
 
 import android.media.Image;
 import android.widget.ImageView;
@@ -11,9 +11,8 @@ public class MangaList {
     String id;
     String fuente;
     String im;
-
     //Constructor principal,seria recomendable crear uno momentaneamente pero sin el cover,asi cuando la persona haya dejado
-    //de escribir,asignamos con el setter y evitamos hacer tantas peticiones al servidor. La idea esta debe implementarse en el buscar.java
+    //de escribir,asignamos con el setter y evitamos hacer tantas peticiones al servidor. La idea esta debe implementarse en el ImagenesScroll.java
     public MangaList(String nombre, String autor, ImageView cover,String id,String fuente,String im) {
         this.nombre = nombre;
         this.autor = autor;

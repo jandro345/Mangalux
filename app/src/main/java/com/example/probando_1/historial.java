@@ -7,6 +7,8 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.probando_1.ListaManga.buscar;
+
 public class historial extends AppCompatActivity {
 
     @Override
@@ -39,7 +41,7 @@ public class historial extends AppCompatActivity {
     //Función que salta a la actividad de búsqueda
     void entrada2(View view){
         Intent Random;
-        Random= new Intent(this,buscar.class);
+        Random= new Intent(this, buscar.class);
         startActivity(Random);
     }
     //Función que salta a la actividad de inicio

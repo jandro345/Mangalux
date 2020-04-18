@@ -1,4 +1,4 @@
-package com.example.probando_1;
+package com.example.probando_1.ListaManga;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.probando_1.ListaCapitulo.ChapterListActivity;
+import com.example.probando_1.MainActivity;
+import com.example.probando_1.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -182,13 +185,13 @@ public class buscar extends AppCompatActivity {
     }
     void entrada3(View view){
         Intent Random;
-        Random= new Intent(this,MainActivity.class);
+        Random= new Intent(this, MainActivity.class);
         startActivity(Random);
 
     }
     void GoToChapter(View view,String id,String cover){
         Intent Random;
-        Random= new Intent(this,ChapterListActivity.class);
+        Random= new Intent(this, ChapterListActivity.class);
         Random.putExtra("id",id);
         Random.putExtra("cover",cover);
         startActivity(Random);
