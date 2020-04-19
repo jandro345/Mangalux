@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -55,6 +56,7 @@ public class ChapterListActivity extends AppCompatActivity {
             //Buscamos los View del layout para poner los datos
             ImageView portada=(ImageView) findViewById(R.id.portada);
             //Cargamos la imagen de la url del path en el ImageView portada
+
             Picasso.get().load("https://cdn.mangaeden.com/mangasimg/"+cover).into(portada);
             //Ponemos la descripcion del manga
 

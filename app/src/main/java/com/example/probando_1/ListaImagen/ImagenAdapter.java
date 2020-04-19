@@ -1,9 +1,17 @@
 package com.example.probando_1.ListaImagen;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
@@ -29,18 +37,18 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
     }
 
     public ImagenAdapter(ArrayList<ImageList> data, Context context) {
-        super(context,R.layout.lista_imagen, data);
+        super(context, R.layout.lista_imagen, data);
         this.dataSet = data;
-        this.mContext=context;
+        this.mContext = context;
 
     }
 
     @Override
     public void onClick(View v) {
 
-        int position=(Integer) v.getTag();
-        Object object= getItem(position);
-        ImageList dataModel=(ImageList) object;
+        int position = (Integer) v.getTag();
+        Object object = getItem(position);
+        ImageList dataModel = (ImageList) object;
 
 
     }
@@ -52,7 +60,7 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
         // Get the data item for this position
         ImageList dataModel = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
-       ImagenAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
+        ImagenAdapter.ViewHolder viewHolder; // view lookup cache stored in tag
 
         final View result;
 
@@ -63,21 +71,43 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
             convertView = inflater.inflate(R.layout.lista_imagen, parent, false);
             viewHolder.image_cap = (ImageView) convertView.findViewById(R.id.manga_imagen);
 
-            result=convertView;
+            result = convertView;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ImagenAdapter.ViewHolder) convertView.getTag();
-            result=convertView;
+            result = convertView;
         }
 
         Animation animation = AnimationUtils.loadAnimation(mContext, (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
         result.startAnimation(animation);
         lastPosition = position;
-        Picasso.get().load("https://cdn.mangaeden.com/mangasimg/"+dataModel.getIm()).into(viewHolder.image_cap);
+        //Descargo la imagen y la ajusto al tamaño de mi pantalla para evitar problemas
+        Bitmap ex = dataModel.getImagen();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
+        wm.getDefaultDisplay().getMetrics(displayMetrics);
+        //Sacamos la resolucion actual del sistema
+        int height= displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+        Bitmap tr;
+        //Vamos a hacer que mantenga el aspecto lo maximo posible
+        float scale=width/dataModel.getSizeX();
+        int escalador= Math.round(scale);
+        //Si estamos con el movil girado,la altura sera menor a la de la imagen y no queremos que se vea achatado
+        //Ajustado con escala conseguimos una relacion y fijando los lados y haciendo variable la altura(muy feo pero que le hacemos)
+        if(height<dataModel.getSizeY()) {
+
+            tr = Bitmap.createScaledBitmap(ex, width, height*escalador, true);
+        }
+        else {
+            tr = Bitmap.createScaledBitmap(ex, width, height, true);
+        }
+        viewHolder.image_cap.setImageBitmap(tr);
         // Return the completed view to render on screen
         return convertView;
     }
+
 }
 
 

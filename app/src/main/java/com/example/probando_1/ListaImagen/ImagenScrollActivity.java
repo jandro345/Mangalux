@@ -2,9 +2,12 @@ package com.example.probando_1.ListaImagen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,11 +20,13 @@ import com.android.volley.toolbox.Volley;
 import com.example.probando_1.ListaCapitulo.ChapterAdapter;
 import com.example.probando_1.ListaCapitulo.ChapterList;
 import com.example.probando_1.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ImagenScrollActivity extends AppCompatActivity {
@@ -30,6 +35,8 @@ public class ImagenScrollActivity extends AppCompatActivity {
     ListView listView;
     private static ImagenAdapter adapter;
     String id;
+    int width;
+    int height;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +44,18 @@ public class ImagenScrollActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             id=extras.getString("id");
-            ImageModels=EdenChapterList(id);
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+             height= displayMetrics.heightPixels;
+             width = displayMetrics.widthPixels;
+            ImageModels=EdenChapterList(id,height,width);
         }
     }
 
 
-    protected ArrayList<ImageList> EdenChapterList(String chapterURL) {
+    protected ArrayList<ImageList> EdenChapterList(String chapterURL, final int height,final int width) {
 //Conexión por medio de Volley(una libreria de google)
-        String url = "https://www.mangaeden.com/api/chapter/" + chapterURL+"/";
+        final String url = "https://www.mangaeden.com/api/chapter/" + chapterURL+"/";
         final ArrayList<ImageList> Models = new ArrayList<ImageList>();
         //Decimos de que tipo es el request que vamos a pedir
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
@@ -56,20 +67,39 @@ public class ImagenScrollActivity extends AppCompatActivity {
                         //Convertir JSON gigante en unos mas faciles de controlar
                         try {
                             //Evento de respuesta
+                            final JSONArray ind = (JSONArray) response.get("images");
 
-                            JSONArray ind = (JSONArray) response.get("images");
-                            for (int j = 0; j < ind.length(); j++) {
-                                JSONArray aux =(JSONArray) ind.get(ind.length()-j-1);
-                                String numero=aux.get(0).toString();
-                                String im=aux.get(1).toString();
-                                int SizeX=(int) aux.get(2);
-                                int SizeY=(int) aux.get(3);
+                                Thread thread = new Thread(new Runnable() {
 
 
-                                Models.add(new ImageList(im,numero,SizeX,SizeY));
+                                    @Override
+                                    public void run() {
+                                        try  {
+                                            for (int j = 0; j < ind.length(); j++) {
+                                                JSONArray aux = (JSONArray) ind.get(ind.length() - j - 1);
+                                                final String numero = aux.get(0).toString();
+                                                final String im = aux.get(1).toString();
+                                                final int SizeX = (int) aux.get(2);
+                                                final int SizeY = (int) aux.get(3);
+                                                final Bitmap[] map = new Bitmap[1];
+                                                map[0] = Picasso.get().load("https://cdn.mangaeden.com/mangasimg/" + im).get();
+                                                ImageModels.add(new ImageList(im, numero, SizeX, SizeY, height, width, map[0]));
+                                                actualizar();
+                                            }
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                });
 
-                            }
-                            actualizar(Models);
+                                thread.start();
+
+
+
+
+
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -91,20 +121,32 @@ public class ImagenScrollActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
         return Models;
     }
-    protected void actualizar(ArrayList<ImageList> ChapterModel){
-        //Volvemos a hacer el proceso de encontrar nuestra lista,enlazarla con nuestro adaptador y meterle los mangas
-        listView = (ListView) findViewById(R.id.listaImagen);
-        adapter = new ImagenAdapter(ChapterModel, getApplicationContext());
+    protected void actualizar(){
 
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        runOnUiThread(new Runnable() {
+            public void run() {
 
-                ImageList dataModel = ImageModels.get(position);
+
+
+                //Volvemos a hacer el proceso de encontrar nuestra lista,enlazarla con nuestro adaptador y meterle los mangas
+                listView = (ListView) findViewById(R.id.listaImagen);
+                adapter = new ImagenAdapter(ImageModels, getApplicationContext());
+
+                listView.setAdapter(adapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        ImageList dataModel = ImageModels.get(position);
+
+
+                    }
+                });
 
 
             }
+
         });
+
     }
 }
