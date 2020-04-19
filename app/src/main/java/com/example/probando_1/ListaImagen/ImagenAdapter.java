@@ -18,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.example.probando_1.ListaCapitulo.ChapterAdapter;
 import com.example.probando_1.ListaCapitulo.ChapterList;
 import com.example.probando_1.ListaManga.MangaList;
@@ -33,7 +35,7 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
 
     // View lookup cache
     private static class ViewHolder {
-        ImageView image_cap;
+        SubsamplingScaleImageView image_cap;
     }
 
     public ImagenAdapter(ArrayList<ImageList> data, Context context) {
@@ -69,7 +71,7 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
             viewHolder = new ImagenAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.lista_imagen, parent, false);
-            viewHolder.image_cap = (ImageView) convertView.findViewById(R.id.manga_imagen);
+            viewHolder.image_cap = (SubsamplingScaleImageView) convertView.findViewById(R.id.manga_imagen);
 
             result = convertView;
 
@@ -84,26 +86,9 @@ public class ImagenAdapter extends ArrayAdapter<ImageList> implements View.OnCli
         lastPosition = position;
         //Descargo la imagen y la ajusto al tamaño de mi pantalla para evitar problemas
         Bitmap ex = dataModel.getImagen();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE); // the results will be higher than using the activity context object or the getWindowManager() shortcut
-        wm.getDefaultDisplay().getMetrics(displayMetrics);
-        //Sacamos la resolucion actual del sistema
-        int height= displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
-        Bitmap tr;
-        //Vamos a hacer que mantenga el aspecto lo maximo posible
-        float scale=width/dataModel.getSizeX();
-        int escalador= Math.round(scale);
-        //Si estamos con el movil girado,la altura sera menor a la de la imagen y no queremos que se vea achatado
-        //Ajustado con escala conseguimos una relacion y fijando los lados y haciendo variable la altura(muy feo pero que le hacemos)
-        if(height<dataModel.getSizeY()) {
 
-            tr = Bitmap.createScaledBitmap(ex, width, height*escalador, true);
-        }
-        else {
-            tr = Bitmap.createScaledBitmap(ex, width, height, true);
-        }
-        viewHolder.image_cap.setImageBitmap(tr);
+
+        viewHolder.image_cap.setImage(ImageSource.cachedBitmap(ex));
         // Return the completed view to render on screen
         return convertView;
     }

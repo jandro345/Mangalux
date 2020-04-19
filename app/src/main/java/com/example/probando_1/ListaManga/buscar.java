@@ -2,6 +2,7 @@ package com.example.probando_1.ListaManga;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -190,10 +191,18 @@ public class buscar extends AppCompatActivity {
 
     }
     void GoToChapter(View view,String id,String cover){
+        dataModels=null;
+        MangaModels=null;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
         Intent Random;
         Random= new Intent(this, ChapterListActivity.class);
         Random.putExtra("id",id);
         Random.putExtra("cover",cover);
+        Random.putExtra("height",height);
+        Random.putExtra("width",width);
         startActivity(Random);
 
     }
