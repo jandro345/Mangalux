@@ -1,6 +1,5 @@
 package com.example.probando_1.ListaManga;
 
-import android.media.Image;
 import android.widget.ImageView;
 
 public class MangaList {
